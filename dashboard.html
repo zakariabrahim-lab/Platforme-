@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Management Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chart.js/3.7.0/chart.min.js"></script>
+    <style>
+        .alert-custom {
+            border: 1px solid #f0ad4e;
+            background-color: #fcf8e3;
+            color: #856404;
+        }
+        .kpi-card {
+            padding: 20px;
+            margin: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center my-4">Loan Management Dashboard</h1>
+        
+        <div class="row text-center">
+            <div class="col-md-4">
+                <div class="kpi-card bg-light">
+                    <h2>Total Loans</h2>
+                    <p id="totalLoans">150</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="kpi-card bg-light">
+                    <h2>Active Loans</h2>
+                    <p id="activeLoans">75</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="kpi-card bg-light">
+                    <h2>Default Rate</h2>
+                    <p id="defaultRate">5%</p>
+                </div>
+            </div>
+        </div>
+        
+        <h3 class="my-4">Loan Trends</h3>
+        <canvas id="loanTrendsChart"></canvas>
+        
+        <h3 class="my-4">Alerts</h3>
+        <div class="alert alert-custom" role="alert">High Default Rate Detected!</div>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('loanTrendsChart').getContext('2d');
+        const loanTrendsChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+                datasets: [{
+                    label: 'Loans Over Time',
+                    data: [30, 50, 40, 60, 70, 80],
+                    fill: false,
+                    borderColor: 'blue',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
