@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Renewal Management</title>
+</head>
+<body>
+    <h1>Renewal Management Interface</h1>
+    <p>Welcome to the loan renewal tracking system. Here, you can manage and track loan renewals effectively.</p>
+
+    <form id="renewalForm">
+        <label for="loanId">Loan ID:</label><br>
+        <input type="text" id="loanId" name="loanId" required><br><br>
+
+        <label for="borrowerName">Borrower Name:</label><br>
+        <input type="text" id="borrowerName" name="borrowerName" required><br><br>
+
+        <label for="renewalDate">Renewal Date:</label><br>
+        <input type="date" id="renewalDate" name="renewalDate" required><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <h2>Renewal List</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Loan ID</th>
+                <th>Borrower Name</th>
+                <th>Renewal Date</th>
+            </tr>
+        </thead>
+        <tbody id="renewalList">
+            <!-- Renewal entries will be added here -->
+        </tbody>
+    </table>
+
+    <script>
+        // JavaScript to handle form submission and update renewal list
+        document.getElementById('renewalForm').onsubmit = function(event) {
+            event.preventDefault();
+            const loanId = document.getElementById('loanId').value;
+            const borrowerName = document.getElementById('borrowerName').value;
+            const renewalDate = document.getElementById('renewalDate').value;
+            const renewalList = document.getElementById('renewalList');
+
+            const newRow = renewalList.insertRow();
+            newRow.insertCell(0).textContent = loanId;
+            newRow.insertCell(1).textContent = borrowerName;
+            newRow.insertCell(2).textContent = renewalDate;
+
+            // Reset form fields
+            document.getElementById('renewalForm').reset();
+        }
+    </script>
+</body>
+</html>
