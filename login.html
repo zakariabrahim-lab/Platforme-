@@ -3,64 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Login</title>
+    <title>Login</title>
     <style>
         body {
-            background: linear-gradient(to right, #00c6ff, #0072ff);
+            background: linear-gradient(to right, #00aaff, #00ffaa);
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             height: 100vh;
-            margin: 0;
+            font-family: Arial, sans-serif;
         }
-        form {
+        .login-container {
             background: white;
             padding: 20px;
-            border-radius: 8px;
+            border-radius: 5px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
+        .error {
+            color: red;
+            display: none;
+        }
         input, select {
-            width: 100%;
-            padding: 10px;
             margin: 10px 0;
+            padding: 10px;
+            width: 100%;
             border: 1px solid #ccc;
-            border-radius: 4px;
+            border-radius: 5px;
         }
         button {
-            background: #0072ff;
+            padding: 10px;
+            width: 100%;
+            background: #0055ff;
             color: white;
             border: none;
-            padding: 10px;
-            border-radius: 4px;
+            border-radius: 5px;
             cursor: pointer;
         }
-        button:hover {
-            background: #005bb5;
-        }
     </style>
-    <script>
-        function validateForm() {
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            if (username === "" || password === "") {
-                alert('Username and Password cannot be empty');
-                return false;
-            }
-            return true;
-        }
-    </script>
 </head>
 <body>
-    <form onsubmit="return validateForm()">
+    <div class="login-container">
         <h2>Login</h2>
-        <input type="text" id="username" placeholder="Username" required>
-        <input type="password" id="password" placeholder="Password" required>
-        <select id="role" required>
-            <option value="">Select Role</option>
-            <option value="user">User</option>
-            <option value="admin">Admin</option>
-        </select>
-        <button type="submit">Login</button>
-    </form>
+        <div class="error" id="error">Invalid credentials. Please try again.</div>
+        <form id="login-form">
+            <input type="text" id="username" placeholder="Username" required />
+            <input type="password" id="password" placeholder="Password" required />
+            <select id="role" required>
+                <option value="">Select Role</option>
+                <option value="admin">Admin</option>
+                <option value="user">User</option>
+            </select>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const role = document.getElementById('role').value;
+            if (username === 'admin' && password === 'admin') {
+                // Proceed with login
+                alert('Login successful!');
+            } else {
+                document.getElementById('error').style.display = 'block';
+            }
+        });
+    </script>
 </body>
 </html>
